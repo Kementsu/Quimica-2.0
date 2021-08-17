@@ -3,9 +3,11 @@ import cv2
 import matplotlib.pyplot as plt
 import pytesseract
 from pytesseract.pytesseract import Output
+from PIL import Image
 pytesseract.pytesseract.tesseract_cmd = r'C:/Program Files/Tesseract-OCR/tesseract'
+
 # Lectura de imagen mediante OpenCV
-img = cv2.imread("Butanol.jpg")
+img = cv2.imread("Prueba2.jpg")
 # Conversion a escala de grises
 gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 # En este paso hay que convertirla a una imagen binaria, este paso es obligatorio si la imagen es a color, en nuestro caso no lo sera.
@@ -18,4 +20,6 @@ cv2.waitKey()
 # Destruir las ventanas actuales en la pantalla
 cv2.destroyAllWindows()
 
-# En este momento los pixeles blancos estan bien separados, por lo cual seria mas facil de detectar
+# img = Image.open ('Prueba2.jpg')
+text = pytesseract.image_to_string(threshold_image)
+print(text)
