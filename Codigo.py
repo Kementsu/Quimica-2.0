@@ -1,10 +1,20 @@
 from os import close
 import cv2
 import numpy as np
+from PIL import Image
+
+molecula = "Butano"
+
+# Conversion de PNG a JPG
+
+im = Image.open(molecula + ".png")
+bg = Image.new("RGB", im.size, (255,255,255))
+bg.paste(im,im)
+bg.save(molecula + ".jpg")
 
 # Meter la imagen y convertirla a escala de grises
 
-imagen = cv2.imread("Butanol.jpg")
+imagen = cv2.imread(molecula + ".jpg")
 gray = cv2.cvtColor(imagen, cv2.COLOR_BGR2GRAY)
 
 _, thresh = cv2.threshold(gray, 90, 255, cv2.THRESH_BINARY_INV)
@@ -29,6 +39,7 @@ for valor in lista_contorno:
 
 # print(hierarchy)
 
+cv2.imshow("Gray", gray)
 cv2.imshow("Thresh", thresh)
 cv2.imshow("Imagen", imagen)
 cv2.waitKey(0)
