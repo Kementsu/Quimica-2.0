@@ -1,9 +1,10 @@
 from os import close
+import os
 import cv2
 import numpy as np
 from PIL import Image
 
-molecula = "Butano"
+molecula = "Butanol"
 
 # Conversion de PNG a JPG
 
@@ -37,7 +38,11 @@ for valor in lista_contorno:
     cv2.drawContours(imagen, contornos, (valor), (color),3)
     valor = valor - 1
 
-# print(hierarchy)
+print(hierarchy)
+file = open("C:/Users/kemen/Desktop/Programacion/Quimica 2.0/Datos de moleculas/" + molecula + ".txt", "w")
+file.write("Jerarquia de la molecula " + molecula + " : \n" + str(hierarchy))
+file.close()
+
 
 cv2.imshow("Gray", gray)
 cv2.imshow("Thresh", thresh)
